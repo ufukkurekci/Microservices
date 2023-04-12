@@ -15,7 +15,7 @@ namespace Contact.API.Controllers
 			_contactService = contactService;
 
 		}
-		[HttpGet("GetContact")]
+		[HttpPost("GetContact/{Id}")]
 		public ContactDTO GetContact(int Id)
 		{
 			return _contactService.GetContactById(Id);
