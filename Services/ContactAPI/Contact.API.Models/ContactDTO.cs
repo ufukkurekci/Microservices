@@ -11,6 +11,12 @@ namespace Contact.API.Models
 		public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Fullname => $"{FirstName} {LastName}";
-    }
+		public string Fullname
+		{
+			get
+			{
+				return $"{FirstName} {LastName}";
+			}
+		}
+	}
 }
