@@ -10,14 +10,15 @@ namespace Contact.API.Service
 {
 	public class ContactService : IContactService
 	{
-		public ContactDTO GetContactById(int Id)
+		public ContactDTO GetContactById(int id)
 		{
-			return new ContactDTO()
+			var contact = new ContactDTO()
 			{
-				Id = Id,
+				Id = id,
 				FirstName = "ufuk",
 				LastName = "kurekci"
 			};
+			return contact;
 		}
 	}
 }
