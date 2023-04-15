@@ -1,8 +1,6 @@
 {
   "GlobalConfiguration": {
-    "BaseUrl": "htpp://localhost:5000",
-    "ServiceDiscoveryProvider": {
-       "Type": "AppConfiguration"
-    }
+    "BaseUrl": "htpp://localhost:5205"
+
   }
 }

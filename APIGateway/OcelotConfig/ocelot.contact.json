@@ -1,11 +1,22 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/contact/{id}",
-      "ServiceName": "contact",
-      "UpstreamPathTemplate": "/contact-gate/",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
-      "SwaggerKey": "contact"
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "SwaggerKey": "contact",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7282"
+        }
+      ],
+      "UpstreamPathTemplate": "/contact/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
     }
   ]
 }

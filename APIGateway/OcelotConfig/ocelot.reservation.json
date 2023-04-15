@@ -1,11 +1,22 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/res/{id}",
-      "ServiceName": "reservation",
-      "UpstreamPathTemplate": "/reservation-gate/",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
-      "SwaggerKey": "reservation"
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "SwaggerKey": "reservation",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7003"
+        }
+      ],
+      "UpstreamPathTemplate": "/res/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
     }
   ]
 }

@@ -1,27 +1,38 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using APIGateway.Config;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MMLib.Ocelot.Provider.AppConfiguration;
 using MMLib.SwaggerForOcelot.DependencyInjection;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddOcelot().AddAppConfiguration();
-builder.Services.AddSwaggerForOcelot(builder.Configuration);
-builder.Services.AddControllers();
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+var routes = "OcelotConfig";
+
+builder.Configuration.AddOcelotWithSwaggerSupport(options =>
 {
-	config.AddOcelotWithSwaggerSupport(option =>
-	{
-		option.Folder = "OcelotConfig";
-	});
+	options.Folder = routes;
 });
+
+builder.Services.AddOcelot(builder.Configuration).AddPolly();
+builder.Services.AddSwaggerForOcelot(builder.Configuration);
+
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
+	.AddOcelot(routes, builder.Environment)
+	.AddEnvironmentVariables();
+
+
+// Add services to the container.
+
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+// Swagger for ocelot
 builder.Services.AddSwaggerGen();
-builder.Services.AddOcelot();
 
 var app = builder.Build();
 
@@ -29,18 +40,19 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
-	app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
 
-app.UseSwaggerForOcelotUI(option =>
-{
-	option.PathToSwaggerGenerator = "/swagger/docs";
-}).UseOcelot().Wait();
-
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseSwaggerForOcelotUI(options =>
+{
+	options.PathToSwaggerGenerator = "/swagger/docs";
+	options.ReConfigureUpstreamSwaggerJson = AlterUpstream.AlterUpstreamSwaggerJson;
+
+}).UseOcelot().Wait();
 
 app.MapControllers();
 
