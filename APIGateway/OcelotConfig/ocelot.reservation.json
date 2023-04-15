@@ -1,0 +1,11 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/res/{id}",
+      "ServiceName": "reservation",
+      "UpstreamPathTemplate": "/reservation-gate/",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "SwaggerKey": "reservation"
+    }
+  ]
+}

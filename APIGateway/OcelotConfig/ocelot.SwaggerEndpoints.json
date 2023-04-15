@@ -1,0 +1,31 @@
+{
+  "SwaggerEndPoints": [
+
+    {
+      "Key": "contact",
+      "Config": [
+        {
+          "Name": "Contact Api",
+          "Version": "v1",
+          "Service": {
+            "Name": "contact",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ]
+    },
+    {
+      "Key": "reservation",
+      "Config": [
+        {
+          "Name": "Reservation Api",
+          "Version": "v1",
+          "Service": {
+            "Name": "reservation",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ]
+    }
+  ]
+}

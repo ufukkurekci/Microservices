@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Rezervation.API.Infrastructure\Rezervation.API.Infrastructure.csproj" />
+    <ProjectReference Include="..\Rezervation.API.Service\Rezervation.API.Service.csproj" />
   </ItemGroup>
 
 </Project>

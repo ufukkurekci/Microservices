@@ -7,7 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="OcelotConfig\ocelot.contact.json" />
+    <Content Remove="OcelotConfig\ocelot.SwaggerEndpoints.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MMLib.Ocelot.Provider.AppConfiguration" Version="2.0.0" />
+    <PackageReference Include="MMLib.SwaggerForOcelot" Version="6.2.0" />
+    <PackageReference Include="Ocelot" Version="18.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="OcelotConfig\ocelot.contact.json" />
+    <None Include="OcelotConfig\ocelot.SwaggerEndpoints.json" />
   </ItemGroup>
 
 </Project>
